@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-
 # This file defines the default values for all variables
 # used in the OpenWhisk Helm Chart.  The variables are grouped
 # by component into subtrees.
@@ -77,15 +76,15 @@ whisk:
       time:
         min: "100ms"
         max: "5m"
-        std: "1m"
+        std: "5m"
       memory:
         min: "128m"
         max: "512m"
         std: "256m"
       concurrency:
         min: 1
-        max: 1
-        std: 1
+        max: 10
+        std: 5
       log:
         min: "0m"
         max: "10m"
@@ -161,9 +160,9 @@ k8s:
 
 # Images used to run auxillary tasks/jobs
 utility:
-  imageName: "openwhisk/ow-utils"
-  imageTag: "ef725a6"
-  imagePullPolicy: "IfNotPresent"
+  imageName: "rajdeep1008/ow-utils"
+  imageTag: "latest"
+  imagePullPolicy: "Always"
 
 # Docker registry
 docker:
@@ -343,12 +342,12 @@ invoker:
   containerFactory:
     useRunc: false
     impl: "kubernetes"
-    enableConcurrency: false
+    enableConcurrency: true
     networkConfig:
       name: "bridge"
       dns:
         inheritInvokerConfig: true
-        overrides:          # NOTE: if inheritInvokerConfig is true, all overrides are ignored
+        overrides: # NOTE: if inheritInvokerConfig is true, all overrides are ignored
           # Nameservers, search, and options are space-separated lists
           # eg nameservers: "1.2.3.4 1.2.3.5 1.2.3.6" is a list of 3 nameservers
           nameservers: ""
@@ -415,9 +414,9 @@ grafana:
   port: 3000
   adminPassword: "admin"
   dashboards:
-  - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/openwhisk_events.json
-  - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/global-metrics.json
-  - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/top-namespaces.json
+    - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/openwhisk_events.json
+    - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/global-metrics.json
+    - https://raw.githubusercontent.com/apache/openwhisk/master/core/monitoring/user-events/compose/grafana/dashboards/top-namespaces.json
 
 # Metrics
 metrics:
@@ -471,7 +470,6 @@ providers:
 busybox:
   imageName: "busybox"
   imageTag: "latest"
-
 
 # Used to define pod affinity and anti-affinity for the Kubernetes scheduler.
 # If affinity.enabled is true, then all of the deployments for the OpenWhisk
@@ -629,7 +627,7 @@ elasticsearch:
   sidecarResources: {}
   networkHost: "0.0.0.0"
   volumeClaimTemplate:
-    accessModes: [ "ReadWriteOnce" ]
+    accessModes: ["ReadWriteOnce"]
     resources:
       requests:
         storage: 30Gi
@@ -697,7 +695,7 @@ elasticsearch:
   securityContext:
     capabilities:
       drop:
-      - ALL
+        - ALL
     # readOnlyRootFilesystem: true
     runAsNonRoot: true
     runAsUser: 1000
@@ -723,7 +721,8 @@ elasticsearch:
   fullnameOverride: ""
   # https://github.com/elastic/helm-charts/issues/63
   masterTerminationFix: false
-  lifecycle: {}
+  lifecycle:
+    {}
     # preStop:
     #   exec:
     #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
