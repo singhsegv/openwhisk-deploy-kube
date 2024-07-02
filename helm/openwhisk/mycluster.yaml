@@ -33,3 +33,7 @@ invoker:
   options: "-Dwhisk.kubernetes.user-pod-node-affinity.enabled=true"
   containerFactory:
     impl: "kubernetes"
+
+scheduler:
+  queue:
+    maxBlackboxRetentionMs: 900000

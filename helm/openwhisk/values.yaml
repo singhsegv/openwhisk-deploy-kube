@@ -162,7 +162,7 @@ k8s:
 utility:
   imageName: "rajdeep1008/ow-utils"
   imageTag: "latest"
-  imagePullPolicy: "Always"
+  imagePullPolicy: "IfNotPresent"
 
 # Docker registry
 docker:
