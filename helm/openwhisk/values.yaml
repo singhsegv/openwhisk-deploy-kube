@@ -354,7 +354,7 @@ invoker:
           search: ""
           options: ""
     kubernetes:
-      isolateUserActions: true
+      isolateUserActions: false
       replicaCount: 1
 
 # API Gateway configurations
