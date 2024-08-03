@@ -18,7 +18,7 @@
 whisk:
   ingress:
     type: NodePort
-    apiHostName: <ADD IP>
+    apiHostName: 192.168.0.151
     apiHostPort: 31001
     useInternally: false
 
