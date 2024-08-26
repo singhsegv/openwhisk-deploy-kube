@@ -259,7 +259,7 @@ nginx:
 # Controller configurations
 controller:
   imageName: "openwhisk/controller"
-  imageTag: "ef725a6"
+  imageTag: "4e8562f"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 3
   restartPolicy: "Always"
@@ -273,7 +273,7 @@ controller:
 scheduler:
   enabled: false
   imageName: "openwhisk/scheduler"
-  imageTag: "ef725a6"
+  imageTag: "4e8562f"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 2
   restartPolicy: "Always"
@@ -330,7 +330,7 @@ etcd:
 # Invoker configurations
 invoker:
   imageName: "openwhisk/invoker"
-  imageTag: "ef725a6"
+  imageTag: "4e8562f"
   imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"
@@ -385,7 +385,7 @@ redis:
 # User-events configuration
 user_events:
   imageName: "openwhisk/user-events"
-  imageTag: "ef725a6"
+  imageTag: "4e8562f"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 1
   restartPolicy: "Always"
