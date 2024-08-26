@@ -149,6 +149,21 @@ whisk:
       gitTag: "2.3.0"
     openwhiskPackageKafka:
       gitTag: "2.1.0"
+  etcd:
+    # NOTE: external etcd is not supported yet
+    external: false
+    clusterName: ""
+    imageName: "quay.io/coreos/etcd"
+    imageTag: "v3.4.0"
+    imagePullPolicy: "IfNotPresent"
+    # NOTE: setting replicaCount > 1 will not work; need to add etcd cluster configuration
+    replicaCount: 1
+    restartPolicy: "Always"
+    port: 2379
+    leaseTimeout: 1
+    poolThreads: 10
+    persistence:
+      size: 256Mi
 
 k8s:
   domain: cluster.local
