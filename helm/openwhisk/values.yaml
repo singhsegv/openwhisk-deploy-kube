@@ -129,7 +129,7 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "32500m"
+    userMemory: "10840m"
   runtimes: "runtimes.json"
   durationChecker:
     timeWindow: "1 d"
@@ -266,8 +266,8 @@ nginx:
 # Controller configurations
 controller:
   imageName: "openwhisk/controller"
-  imageTag: "4e8562f"
-  imagePullPolicy: "Always"
+  imageTag: "ef725a6"
+  imagePullPolicy: "IfNotPresent"
   replicaCount: 3
   restartPolicy: "Always"
   port: 8080
@@ -280,8 +280,8 @@ controller:
 scheduler:
   enabled: false
   imageName: "openwhisk/scheduler"
-  imageTag: "4e8562f"
-  imagePullPolicy: "Always"
+  imageTag: "ef725a6"
+  imagePullPolicy: "IfNotPresent"
   replicaCount: 2
   restartPolicy: "Always"
   endpoints:
@@ -337,8 +337,8 @@ etcd:
 # Invoker configurations
 invoker:
   imageName: "openwhisk/invoker"
-  imageTag: "4e8562f"
-  imagePullPolicy: "Always"
+  imageTag: "ef725a6"
+  imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"
   port: 8080
@@ -362,7 +362,7 @@ invoker:
           options: ""
     kubernetes:
       isolateUserActions: false
-      replicaCount: 5
+      replicaCount: 16
 
 # API Gateway configurations
 apigw:
@@ -392,7 +392,7 @@ redis:
 # User-events configuration
 user_events:
   imageName: "openwhisk/user-events"
-  imageTag: "4e8562f"
+  imageTag: "ef725a6"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 1
   restartPolicy: "Always"
