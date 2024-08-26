@@ -154,6 +154,8 @@ whisk:
       timeout: 5
     pool:
       threads: 10
+    leaseTimeout: 1
+    poolThreads: 10
 
 k8s:
   domain: cluster.local
@@ -265,7 +267,7 @@ nginx:
 controller:
   imageName: "openwhisk/controller"
   imageTag: "4e8562f"
-  imagePullPolicy: "IfNotPresent"
+  imagePullPolicy: "Always"
   replicaCount: 3
   restartPolicy: "Always"
   port: 8080
@@ -279,7 +281,7 @@ scheduler:
   enabled: false
   imageName: "openwhisk/scheduler"
   imageTag: "4e8562f"
-  imagePullPolicy: "IfNotPresent"
+  imagePullPolicy: "Always"
   replicaCount: 2
   restartPolicy: "Always"
   endpoints:
@@ -336,7 +338,7 @@ etcd:
 invoker:
   imageName: "openwhisk/invoker"
   imageTag: "4e8562f"
-  imagePullPolicy: "IfNotPresent"
+  imagePullPolicy: "Always"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"
   port: 8080
