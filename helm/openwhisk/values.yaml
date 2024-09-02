@@ -93,7 +93,7 @@ whisk:
       payload:
         max: "1048576"
   loadbalancer:
-    blackboxFraction: "20%"
+    blackboxFraction: "0%"
     timeoutFactor: 2
   # Kafka configuration. For all sub-fields a value of "" means use the default from application.conf
   kafka:
@@ -129,7 +129,7 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "10840m"
+    userMemory: "16000m"
   runtimes: "runtimes.json"
   durationChecker:
     timeWindow: "1 d"
@@ -268,7 +268,7 @@ controller:
   imageName: "openwhisk/controller"
   imageTag: "ef725a6"
   imagePullPolicy: "IfNotPresent"
-  replicaCount: 3
+  replicaCount: 2
   restartPolicy: "Always"
   port: 8080
   options: ""
@@ -362,7 +362,7 @@ invoker:
           options: ""
     kubernetes:
       isolateUserActions: false
-      replicaCount: 16
+      replicaCount: 8
 
 # API Gateway configurations
 apigw:
