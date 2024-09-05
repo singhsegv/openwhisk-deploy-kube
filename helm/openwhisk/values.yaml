@@ -129,7 +129,7 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "16000m"
+    userMemory: "8000m"
   runtimes: "runtimes.json"
   durationChecker:
     timeWindow: "1 d"
@@ -362,7 +362,7 @@ invoker:
           options: ""
     kubernetes:
       isolateUserActions: false
-      replicaCount: 8
+      replicaCount: 16
 
 # API Gateway configurations
 apigw:
