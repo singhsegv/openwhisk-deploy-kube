@@ -68,9 +68,9 @@ whisk:
     guest: "23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
   systemNameSpace: "/whisk.system"
   limits:
-    actionsInvokesPerminute: 50000
-    actionsInvokesConcurrent: 50000
-    triggersFiresPerminute: 10000
+    actionsInvokesPerminute: 500000
+    actionsInvokesConcurrent: 500000
+    triggersFiresPerminute: 100000
     actionsSequenceMaxlength: 100
     actions:
       time:
@@ -129,7 +129,7 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "8000m"
+    userMemory: "55000m"
   runtimes: "runtimes.json"
   durationChecker:
     timeWindow: "1 d"
@@ -168,7 +168,7 @@ k8s:
 # Images used to run auxillary tasks/jobs
 utility:
   imageName: "rajdeep1008/ow-utils"
-  imageTag: "latest"
+  imageTag: "lala"
   imagePullPolicy: "IfNotPresent"
 
 # Docker registry
@@ -244,7 +244,8 @@ db:
     size: 2Gi
 
 # CouchDB, ElasticSearch
-activationStoreBackend: "CouchDB"
+# activationStoreBackend: "CouchDB"
+activationStoreBackend: "ElasticSearch"
 
 # Nginx configurations
 nginx:
@@ -266,7 +267,7 @@ nginx:
 # Controller configurations
 controller:
   imageName: "openwhisk/controller"
-  imageTag: "ef725a6"
+  imageTag: "6b1c048"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 2
   restartPolicy: "Always"
@@ -278,9 +279,9 @@ controller:
 
 # Scheduler configurations
 scheduler:
-  enabled: false
+  enabled: true
   imageName: "openwhisk/scheduler"
-  imageTag: "ef725a6"
+  imageTag: "6b1c048"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 2
   restartPolicy: "Always"
@@ -337,7 +338,7 @@ etcd:
 # Invoker configurations
 invoker:
   imageName: "openwhisk/invoker"
-  imageTag: "ef725a6"
+  imageTag: "6b1c048"
   imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"
@@ -362,7 +363,7 @@ invoker:
           options: ""
     kubernetes:
       isolateUserActions: false
-      replicaCount: 16
+      replicaCount: 9
 
 # API Gateway configurations
 apigw:
@@ -392,7 +393,7 @@ redis:
 # User-events configuration
 user_events:
   imageName: "openwhisk/user-events"
-  imageTag: "ef725a6"
+  imageTag: "6b1c048"
   imagePullPolicy: "IfNotPresent"
   replicaCount: 1
   restartPolicy: "Always"
@@ -432,7 +433,7 @@ metrics:
   # passing prometheus-enabled by a config file, required by openwhisk
   whiskconfigFile: "whiskconfig.conf"
   # set true to enable Kamon
-  kamonEnabled: false
+  kamonEnabled: true
   # set true to enable Kamon tags
   kamonTags: false
   # set true to enable user metrics
@@ -476,7 +477,7 @@ providers:
 
 busybox:
   imageName: "busybox"
-  imageTag: "latest"
+  imageTag: "1.37"
 
 # Used to define pod affinity and anti-affinity for the Kubernetes scheduler.
 # If affinity.enabled is true, then all of the deployments for the OpenWhisk
